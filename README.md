@@ -1,74 +1,76 @@
+# Experimental-verification-of-frequency-response-of-Analog-fiber-optic-link
+# Experiment: Fiber Analog Link (660nm & 950nm) and Frequency Response of Phototransistor Detector
 
-# Exp 4 Experimental verification of frequency response of Analog fiber optic link
-# Fiber Optic Link Analysis (660nm)
-
-## AIM
-To analyze the relationship between input and received signal of a 660nm fiber optic cable using analog and digital link.
-
----
-
-## EQUIPMENTS REQUIRED
-- Fiber optic trainer kit ST 2502  
-- Power supply  
-- Patch cords  
-- CRO (Cathode Ray Oscilloscope)  
-- 660 nm fiber cable  
+## Aim
+To study a 660nm & 950nm Fiber Analog Link and to analyze the frequency response of the phototransistor detector. The experiment investigates the relationship between the input signal and the received signal.
 
 ---
 
-## THEORY
-
-Fiber optic links can be used for transmission of digital as well as analog signals. A fiber optic link typically consists of three main elements:
-- **Transmitter**: Converts the electrical input signal into optical (light) energy.
-- **Optical Fiber**: Serves as the transmission medium for the light signal.
-- **Receiver**: Converts the received light back into an electrical signal, preserving the original signal pattern.
-
----
-
-## PROCEDURE
-
-1. Connect the power supply to the board.  
-2. Ensure that all switched faults are set to ‘Off’.  
-3. Make the following connections (as shown in Figure 19):  
-   a. Connect the 1KHz sine wave output to emitter 1's input.  
-   b. Connect the fiber optic cable between emitter output and detector input.  
-   c. Connect detector 1's output to AC amplifier 1 input.  
-4. On the board, switch emitter 1's driver to analog mode.  
-5. Switch on the power.  
-6. Observe the input to emitter 1 (TP5) and the output from AC amplifier 1 (TP28). Verify that both signals are identical.  
-7. Vary the frequency between 10 Hz to 1 MHz and observe the output voltage for a constant input voltage of 5V.  
-8. Calculate the bandwidth by determining the gain in decibels (dB).  
+## Equipment Required
+- Link-B Kit with power supply  
+- Patch chords  
+- 20 MHz Dual Channel Oscilloscope  
+- 1 MHz Function Generator  
+- 1 Meter Fiber Cable  
 
 ---
 
-## BLOCK DIAGRAM
+## Theory
+Fiber optic links can transmit both digital and analog signals. A fiber optic link consists of three main elements:  
+1. **Transmitter** – Converts electrical signals into optical signals using an LED.  
+2. **Optical Fiber** – Serves as the transmission medium.  
+3. **Receiver** – Converts optical signals back into electrical signals.
 
-*(Insert block diagram here)*
+### Transmitter
+- Composed of buffer, driver, and optical source.  
+- Buffer provides electrical connection and isolation.  
+- Driver powers the optical source to replicate the input signal.  
+- Optical source (LED) converts electrical current to light energy.  
+  - **SFH450V (950nm)**: Near infrared LED.  
+  - **SFH756V (660nm)**: Visible red LED.  
 
----
-
-## CONNECTION DIAGRAM  
-**Setting up an Analog Link**
-
-*(Insert connection diagram here)*
-
----
-
-## TABULATION  
-**Transmission through Analog Link**
-
-| Frequency (Hz) | Output Signal Amplitude (Vo) | Gain = Vo/Vi | Gain in dB |
-|----------------|------------------------------|--------------|------------|
-|                |                              |              |            |
-
----
-
-## MODEL GRAPH
-
-*(Insert model graph here)*
+### Receiver
+- Converts optical energy into electrical signals.  
+- Detector used: **SFH350V (Phototransistor Detector)**.  
+- Responsivity: ~0.8 mA/10 µW at 660nm.  
+- Bandwidth: ~300 kHz (limited by response time).  
+- Output voltage is proportional to incident optical power and replicates transmitted signal.
 
 ---
 
-## RESULT
+## Procedure
+1. Connect power supply to Link-B kit and switch ON.  
+2. Set switches and jumpers:  
+   - SW8 → TX  
+   - SW9 → TX1  
+   - JP5 → +12V  
+   - JP6, JP9, JP10 → shorted  
+   - JP8 → sine  
+   - Pot P2 (Intensity control) → minimum  
+3. Feed 2 Vpp sinusoidal signal (1 kHz) from function generator to **IN** of Analog Buffer.  
+4. Connect **OUT** of Analog Buffer → **TX IN** of Transmitter.  
+5. Connect fiber between SFH756V (660nm LED) and SFH350V detector.  
+6. Observe detected signal at **ANALOG OUT** on oscilloscope.  
+7. Adjust P2 until received signal amplitude ≈ 2 Vpp.  
+8. Vary input frequency and record detected signal amplitude.  
+9. Plot detected signal vs. frequency to determine **3 dB bandwidth**.  
+10. Switch SW9 → TX2, JP7 → +12V.  
+11. Replace fiber connection to SFH450V (950nm LED).  
+12. Observe detected signal at **ANALOG OUT** on oscilloscope.  
 
-*(Summarize observations and conclusions here)*
+---
+
+## Tabulation
+
+<img width="1280" height="958" alt="WhatsApp Image 2026-08-19 at 9 17 12 AM" src="https://github.com/user-attachments/assets/538e38bb-906e-46be-aa3e-e756a84f4e4e" />
+
+---
+
+## Model Graph
+- Plot **Gain (dB)** vs. **Frequency (Hz)**.  
+- Identify the **3 dB down point** to determine bandwidth.  
+
+---
+
+## Result
+The frequency response of the phototransistor detector was studied. The 3 dB bandwidth was determined from the gain vs. frequency plot for both 660nm and 950nm fiber analog links.
